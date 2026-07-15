@@ -15,8 +15,8 @@ logger = logging.getLogger(__name__)
 def main():
     # Resolve the path to the sample video file in our workspace
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    video_path = os.path.join(current_dir, "data", "sample.mp4")
-    
+    video_path = os.path.join(current_dir, "data", "combined_video.mp4")
+
     if not os.path.exists(video_path):
          logger.error(f"Video file not found at: {video_path}")
          return
@@ -31,7 +31,7 @@ def main():
             "sources": f"file://{video_path}!loop!sync",
             "outputs": "tcp://*:5550",
         }),
-        
+
         # 2. Web Visualization Sink Filter
         (Webvis, {
             "id": "webvis_sink",
@@ -42,7 +42,7 @@ def main():
 
     logger.info("Starting OpenFilters Pipeline (VideoIn -> Webvis)...")
     logger.info("Point your browser to http://localhost:8000 once running.")
-    
+
     try:
         # Launch the multi-filter pipeline
         Filter.run_multi(pipeline_definition)

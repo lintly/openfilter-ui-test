@@ -23,7 +23,7 @@ run-cli:
 	@echo "Point your browser to http://localhost:8000 once running."
 	$(OPENFILTER) run \
 	  - VideoIn \
-	    --sources "file://$(shell pwd)/data/sample.mp4!loop!sync" \
+	    --sources "file://$(shell pwd)/data/combined_video.mp4!loop!sync" \
 	    --outputs "tcp://*:5550" \
 	  - Webvis \
 	    --sources "tcp://localhost:5550" \
